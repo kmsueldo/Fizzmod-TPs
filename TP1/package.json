@@ -1,0 +1,20 @@
+{
+      "name": "prep",
+      "version": "1.0.0",
+      "description": "",
+      "main": "index.js",
+      "scripts": {
+            "test": "jest --collectCoverage=false tp.test.js",
+            "start": "nodemon tp.js"
+      },    
+      "devDependencies": {
+            "eslint": "^4.13.1",
+            "jest": "^22.0.3",
+            "nodemon": "^2.0.7"
+      },
+      "author": "",
+      "license": "ISC",
+      "jest": {
+            "testURL": "http://localhost/"
+      }
+}
