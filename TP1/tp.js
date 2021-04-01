@@ -29,8 +29,8 @@ Crear un repo en github y subir todo el proyecto. Se ignorará la carpeta node_m
 Esta función devolverá un string con la url del repo.
 */
 function urlRepo() {
-  const url = 'https://github.com/kmsueldo/Fizzmod-TPs'
-  
+  const url = 'https://github.com/kmsueldo/Fizzmod-TPs.git'
+
   return url
 }
 
