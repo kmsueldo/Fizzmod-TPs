@@ -41,43 +41,40 @@ true en caso de que encuentre un número en dicho texto, caso contrario retorna 
 En ambos métodos, si el texto no es válido, se devolverá -1
 Crear un propiedad estática contadorInstancias que me indique cuantas instancias hay de esa clase.
 */
-const crearClase = () => class Texto {
+ const crearClase = () => class Texto {
 
-      static contadorInstancias
-      constructor(texto){
-          this.texto = texto;
-          if (!Texto.contadorInstancias) {
-            Texto.contadorInstancias = 0
-            Texto.contadorInstancias++
-          }
-      }
+  static contadorInstancias
+  constructor(texto){
+      this.texto = texto;
+      !Texto.contadorInstancias ? Texto.contadorInstancias = 1 : Texto.contadorInstancias++
+  }
 
-      contadorPalabras(){
-        if (typeof this.texto !== 'string'){
-          return -1
-        } else {
-          let palabras = this.texto.trim().split(' ')
-          return palabras.length
-        } 
-      }
+  contadorPalabras(){
+    if (typeof this.texto !== 'string'){
+      return -1
+    } else {
+      let palabras = this.texto.split(' ')
+      return (this.texto.trim() !=='') ? palabras.length : 0
+    } 
+  }
 
-      hayNumeros(){
-        let existingCharacter = false
-        if (typeof this.texto !== 'string'){
-          return -1
-        } else {
-          let caracteres = this.texto.trim().split('')
-          for (const caracter of caracteres) {
-            if (isNaN(parseInt(caracter)) ) {
-              existingCharacter = false
-            }else{
-              existingCharacter = true
-            }
-          }
-        } 
-        return existingCharacter
+  hayNumeros(){
+    let existingCharacter = false
+    if (typeof this.texto !== 'string'){
+      return -1
+    } else {
+      let caracteres = this.texto.trim().split('')
+      for (const caracter of caracteres) {
+        if (isNaN(parseInt(caracter)) ) {
+          existingCharacter = false
+        }else{
+          existingCharacter = true
+        }
       }
-    }
+    } 
+    return existingCharacter
+  }
+}
 
 
 /* ************************************************************ */
@@ -94,6 +91,8 @@ contarVocales(texto)
 urlRepo()
 console.log(urlRepo());
 
+
+crearClase()
 
 
 module.exports = {
