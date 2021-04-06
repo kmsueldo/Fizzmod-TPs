@@ -36,13 +36,48 @@ function urlRepo() {
 /* 
 Crear una función arrow, que devuelva una clase en ES6 que contendrá dos métodos llamados contadorPalabras y hayNumeros. 
 La clase recibirá un texto que se guardará en una propiedad llamada texto. 
-contadorPalabras retornará la cantidad de palabras encontradas en la propiedad texto y hayNumeros devolverá true en caso de que encuentre un número en dicho texto, caso contrario retorna false. En ambos métodos, si el texto no es válido, se devolverá -1
+contadorPalabras retornará la cantidad de palabras encontradas en la propiedad texto y hayNumeros devolverá 
+true en caso de que encuentre un número en dicho texto, caso contrario retorna false. 
+En ambos métodos, si el texto no es válido, se devolverá -1
 Crear un propiedad estática contadorInstancias que me indique cuantas instancias hay de esa clase.
 */
-const crearClase = () => {
-  return
-}
+const crearClase = () => class Texto {
 
+      static contadorInstancias
+      constructor(texto){
+          this.texto = texto;
+          if (!Texto.contadorInstancias) {
+            Texto.contadorInstancias = 0
+            Texto.contadorInstancias++
+          }
+      }
+
+      contadorPalabras(){
+        if (typeof this.texto !== 'string'){
+          return -1
+        } else {
+          let palabras = this.texto.trim().split(' ')
+          return palabras.length
+        } 
+      }
+
+      hayNumeros(){
+        let existingCharacter = false
+        if (typeof this.texto !== 'string'){
+          return -1
+        } else {
+          let caracteres = this.texto.trim().split('')
+          for (const caracter of caracteres) {
+            if (isNaN(parseInt(caracter)) ) {
+              existingCharacter = false
+            }else{
+              existingCharacter = true
+            }
+          }
+        } 
+        return existingCharacter
+      }
+    }
 
 
 /* ************************************************************ */
@@ -51,15 +86,13 @@ const crearClase = () => {
 
 /* -------------------FUNCION CONTAR VOCALES----------------------- */
 
-let texto = 1
+let texto = 'Hola como estas'
 contarVocales(texto)
-console.log(contarVocales(texto));
 
 /* -------------------FUNCION URL REPOSITORIO----------------------- */
 
 urlRepo()
 console.log(urlRepo());
-
 
 
 
