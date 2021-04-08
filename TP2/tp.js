@@ -9,14 +9,14 @@ Si el callback no proporciona un tiempo válido, se devolverá 'Tiempo de entrad
 
 function objectMerge(array, tiempo) {
   return new Promise((resolve,reject)=> {
-    if (typeof tiempo() == 'number' && Array.isArray(array()) ) {
+    if (typeof tiempo() == 'number' && tiempo() > 0 && Array.isArray(array()) ) {
       return setTimeout(() => resolve(Object.assign(...array())), tiempo()*1000);
      }
     if (!Array.isArray(array())) {
       let error = 'Array de entrada no válido'
       reject(error)
     } 
-    if (typeof tiempo() !== 'number') {
+    if (typeof tiempo() !== 'number' || typeof tiempo() == 'number' && tiempo() <= 0) {
       let error = 'Tiempo de entrada no válido'
       reject(error)
     } 
@@ -25,7 +25,7 @@ function objectMerge(array, tiempo) {
 }
 
 const array = () => [{ a: 1, b: 2 }, { c: 1, d: 2 }, { c: 11, b: 22 }]
-const tiempo = () => 3
+const tiempo = () => 2
 
 objectMerge(array, tiempo)
 .then(() =>{
