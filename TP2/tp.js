@@ -76,19 +76,55 @@ si la invocas de nuevo con 5, deberia retornar 25 (guardado previament en el cac
 Nota: usá un objeto donde cada propiedad sea un argumento, y el valor el resultado.
       usá hasOwnProperty!
 */
-function cacheFunction(cb) {
-  return interna = () => {
-    return cb
-  };
+
+
+const cb = (x) => { 
+  return x * x
 }
 
-const cb = (x) => {
-  return x*x
+function cacheFunction(cb) {
+  let obj = new Object
+  return cache = (x) => {
+    console.log("x",x);
+    if (x != obj.x) {
+        if (!obj.hasOwnProperty("memoria") ) {
+          !obj.count ? obj.count = 1 : obj.count++
+          obj.x = x
+          obj.memoria = 'EXISTS'
+          obj.valor = cb(obj.x) 
+          console.log(`RETORNA EL VALOR LLAMANDO A LA CALLBACK ${obj.valor}`);
+          return  obj.valor
+        }else {
+          obj.x = x
+          obj.valor = cb(obj.x)
+          console.log(`LLAMANDO A LA CALLBACK CUANDO HAY OTRO NUMERO EN MEMORIA ${obj.valor}`);
+          return  obj.valor
+        }
+    }
+    console.log(`RETORNA EL VALOR QUE HAY EN MEMORIA ${obj.valor}`);
+    return  obj.valor
+  }
+  
 }
+
+
 
 const cachedFunction = cacheFunction(cb);
-console.log(cb(5)); 
-console.log(cachedFunction()); 
+
+cachedFunction(5)   
+cachedFunction(5)   
+cachedFunction(7)   
+cachedFunction(7)   
+cachedFunction(6) 
+cachedFunction(6)
+cachedFunction(6)
+ 
+    
+ 
+// console.log(cachedFunction(6)); 
+// console.log(cachedFunction(7)); 
+// console.log(cachedFunction(7)); 
+ 
  
 
 
