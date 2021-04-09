@@ -88,12 +88,14 @@ describe('Test contador', () => {
     cachedFunction(true);
     cachedFunction(true);
     cachedFunction(true);
+    cachedFunction(10);
     cachedFunction(true);
     cachedFunction(10);
     cachedFunction(10);
+    cachedFunction(100);
     cachedFunction(10);
     cachedFunction(10);
-    expect(cb).toHaveBeenCalledTimes(2);
+    expect(cb).toHaveBeenCalledTimes(3);
   });
  });
  

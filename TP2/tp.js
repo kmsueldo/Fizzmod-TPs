@@ -77,12 +77,11 @@ Nota: usá un objeto donde cada propiedad sea un argumento, y el valor el result
       usá hasOwnProperty!
 */
 
-
 const cb = (x) => { 
   return x * x
 }
 
-function cacheFunction(cb) {
+/* function cacheFunction(cb) {
   let obj = new Object
   return cache = (x) => {
     console.log("x",x);
@@ -107,8 +106,6 @@ function cacheFunction(cb) {
   
 }
 
-
-
 const cachedFunction = cacheFunction(cb);
 
 cachedFunction(5)   
@@ -117,14 +114,47 @@ cachedFunction(7)
 cachedFunction(7)   
 cachedFunction(6) 
 cachedFunction(6)
-cachedFunction(6)
+cachedFunction(6) */
+
+
+/*  VERSION 2.0 DE LA FUNCION cacheFunction, ya que la anterior solo guardaba el ultimo numero ingresado */
+/*  En esta nueva funcion guardo en el objeto todos los numeros distintos ingresados*/
+/*  Si el numero es nuevo llamo a la CB y si existe en el objeto lo busco en la "memoria"*/
+/*  Me tome el atrevimiento de tambien modificar el test para probar esta nueva funcion */
+/*  En caso de querer probar la funcion anterior descomentar el codigo de arriba y comentar el de abajo */
+console.log("///////////////////////////////////////////////////////////////////////////////");
+
+
+function cacheFunction(cb) {
+  let obj = {}
+  return cache = (x) => {
+    console.log("x",x);
+        if (!obj.hasOwnProperty(x) ) {
+          !obj.count ? obj.count = 1 : obj.count++
+          obj[x] = cb(x) 
+          console.log(`RETORNA EL VALOR LLAMANDO A LA CALLBACK ${obj[x]}`);
+          return  obj[x]
+        }else {          
+          console.log(`LLAMANDO A LA  MEMORIA ${obj[x]}`);
+          return  obj[x]
+        }
+  }
+  
+}
+
+const cachedFunction2 = cacheFunction(cb);
+
+cachedFunction2(5)   
+cachedFunction2(5)   
+cachedFunction2(7)   
+cachedFunction2(7)   
+cachedFunction2(6) 
+cachedFunction2(5)  
+cachedFunction2(6)
+cachedFunction2(6)
  
     
- 
-// console.log(cachedFunction(6)); 
-// console.log(cachedFunction(7)); 
-// console.log(cachedFunction(7)); 
- 
+
  
 
 
@@ -136,5 +166,5 @@ cachedFunction(6)
 module.exports = {
   objectMerge,
   contador,
-  cacheFunction,
+  cacheFunction
 };
