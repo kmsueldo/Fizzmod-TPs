@@ -9,7 +9,7 @@ const number = (req,res,PORT) => {
             obj[numberRandom]++
         }
     }
-    res.send({PORT})
+    res.send({obj})
 }
 
 
